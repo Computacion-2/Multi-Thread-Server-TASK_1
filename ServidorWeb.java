@@ -47,8 +47,15 @@ final class SolicitudHttp implements Runnable
         System.out.println();
         System.out.println(lineaDeSolicitud);
 
+        if (lineaDeSolicitud == null) {
+            os.close();
+            br.close();
+            socket.close();
+            return;
+        }
+
         String lineaDelHeader = null;
-        while ((lineaDelHeader = br.readLine()).length() != 0) {
+        while ((lineaDelHeader = br.readLine()) != null && lineaDelHeader.length() != 0) {
             System.out.println(lineaDelHeader);
         }
 
